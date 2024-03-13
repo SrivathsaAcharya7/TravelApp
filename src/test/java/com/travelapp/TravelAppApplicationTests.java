@@ -196,10 +196,9 @@ class TravelAppApplicationTests {
 		booking.setCabType("Sedan");
 		booking.setDate("2024-03-12 20:20");
 		booking.setStatus("Pending");
-	    Customer customer = customerService.getCustomerById(2);
-	    booking.setCustomer(customer);
-	    Cab cab = cabService.getCabById(2); 
-	    booking.setCab(cab);
+		booking.setCustomerId(99);
+		booking.setCabId(22);
+		booking.setFarePrice(100);
 		String result = bookingService.addBooking(booking);
 		assertNotNull(result);
 	}

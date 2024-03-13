@@ -1,10 +1,10 @@
 package com.travelapp.models;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Booking {
@@ -13,35 +13,18 @@ public class Booking {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@ManyToOne
-	@JoinColumn(name = "customer_id")
-	private Customer customer;
+	@Column(name = "customer_id")
+	private Integer customerId;
 
-	@ManyToOne
-	@JoinColumn(name = "cab_id")
-	private Cab cab;
+	@Column(name = "cab_id")
+	private Integer cabId;
 	private String customerName;
 	private String pickupLocation;
 	private String dropoffLocation;
 	private String cabType;
 	private String date;
 	private String status;
-
-	public Booking() {
-	}
-
-	public Booking(int customerId, Cab cab, String customerName, String pickupLocation, String dropoffLocation,
-			String cabType, String date, String status) {
-		this.customer = new Customer();
-		this.customer.setId(customerId);
-		this.cab = cab;
-		this.customerName = customerName;
-		this.pickupLocation = pickupLocation;
-		this.dropoffLocation = dropoffLocation;
-		this.cabType = cabType;
-		this.date = date;
-		this.status = status;
-	}
+	private double farePrice;
 
 	public int getId() {
 		return id;
@@ -51,20 +34,20 @@ public class Booking {
 		this.id = id;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public Integer getCustomerId() {
+		return customerId;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
 	}
 
-	public Cab getCab() {
-		return cab;
+	public Integer getCabId() {
+		return cabId;
 	}
 
-	public void setCab(Cab cab) {
-		this.cab = cab;
+	public void setCabId(Integer cabId) {
+		this.cabId = cabId;
 	}
 
 	public String getPickupLocation() {
@@ -114,4 +97,13 @@ public class Booking {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+	public double getFarePrice() {
+		return farePrice;
+	}
+
+	public void setFarePrice(double farePrice) {
+		this.farePrice = farePrice;
+	}
+	
 }

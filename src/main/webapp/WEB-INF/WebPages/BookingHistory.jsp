@@ -60,6 +60,7 @@
                         <th>Drop-off Location</th>
                         <th>Date & Time</th>
                         <th>Cab Type</th>
+                        <th>Fare Price</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -72,6 +73,7 @@
                             <td>${booking.dropoffLocation}</td>
                             <td>${booking.date}</td>
                             <td>${booking.cabType}</td>
+                            <td>${booking.farePrice}</td>
                             <td>${booking.status}</td>
                         </tr>
                     </c:forEach>

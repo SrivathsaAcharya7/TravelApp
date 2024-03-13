@@ -47,7 +47,7 @@ body {
 	<div class="container">
 		<h1 class="my-4">Update Customer</h1>
 		<div class="glass-card p-4">
-			<form action="updatecustomerinfo" method="post">
+			<form action="${pageContext.request.contextPath}/updatecustomerinfo" method="post">
 				<input type="hidden" name="id" value="${customer.id}">
 				<div class="form-group">
 					<label for="name">Name:</label> <input type="text"

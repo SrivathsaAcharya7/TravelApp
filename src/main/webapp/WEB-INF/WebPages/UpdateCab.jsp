@@ -71,7 +71,7 @@ body {
 	<div class="container">
 		<h1 class="my-4">Update Cab</h1>
 		<div class="glass-card">
-			<form action="updatecabinfo" method="post">
+			<form action="${pageContext.request.contextPath}/updatecabinfo" method="post">
 				<input type="hidden" name="id" value="${cab.id}">
 				<div class="form-group">
 					<label for="registrationNumber">Registration Number</label> <input

@@ -66,6 +66,7 @@
 <jsp:include page="CustomerNavbar.jsp" />
     <div class="container">
         <h1 class="my-4">Book a Cab</h1>
+          <%@ include file="/WEB-INF/views/messages.jsp"%>
         <div class="glass-card p-4">
             	<form:form action="mybookings" method="post" modelAttribute="booking">
 			<div class="form-group">
@@ -95,22 +96,19 @@
 			</div>
 			<div class="form-group">
 				<label for="cabType">Cab Type:</label><br>
-				<form:select path="cab" class="form-control" required="required">
+				<form:select path="cabId" class="form-control" required="required">
 					<form:option value="#">Select Cab Type</form:option>
 					<c:forEach items="${ cabTypeList}" var="item">
 						<form:option value="${ item.id}">${ item.type}</form:option>
 					</c:forEach>
 				</form:select>
 			</div>
-
-
-
-
-
+			
 			<div class="form-group">
 				<label for="estimatedFare">Estimated Fare:</label><br> <input
 					type="text" class="form-control" id="estimatedFare"
 					name="estimatedFare" readonly>
+					<input type="hidden" id="farePrice" name="farePrice">
 			</div>
 
 			<input type="hidden" id="status" name="status" value="Confirmed">
@@ -122,8 +120,8 @@
         </div>
     </div>
 
-    <!-- Initialize cabFareList JavaScript variable -->
-    <script>
+
+   <script>
     var cabFareList = ${cabFareListJson};
 
     const pickupLocationSelect = document.getElementById("pickupLocation");
@@ -144,6 +142,7 @@
 
 
         document.getElementById("estimatedFare").value = farePrice;
+        document.getElementById("farePrice").value = farePrice;
     }
 
 

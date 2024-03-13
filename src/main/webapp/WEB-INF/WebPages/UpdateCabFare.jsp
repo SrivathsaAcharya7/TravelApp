@@ -47,7 +47,7 @@ body {
 	<div class="container">
 		<h1 class="my-4">Update Cab Fare</h1>
 		<div class="glass-card p-4">
-			<form action="updatecabfareinfo" method="post">
+			<form action="${pageContext.request.contextPath}/updatecabfareinfo" method="post">
 				<input type="hidden" name="id" value="${cabFare.id}">
 				<div class="form-group">
 					<label for="pickupLocation">Pickup Location</label> <input

@@ -73,7 +73,7 @@ body {
     <h2 class="heading">Update Booking Status</h2>
     <br/>
     <div class="glass-card">
-        <form action="updateBookingStatusInfo" method="post">
+        <form action="${pageContext.request.contextPath}/updateBookingStatusInfo" method="post">
             <input type="hidden" name="id" value="${booking.id}">
             <div class="form-group">
                 <label for="status">New Status:</label>

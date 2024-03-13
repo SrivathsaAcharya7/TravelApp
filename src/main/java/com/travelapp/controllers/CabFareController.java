@@ -32,7 +32,7 @@ public class CabFareController {
 	@PostMapping("/newcabfareinfo")
 	public String addCabFare(@ModelAttribute CabFare cabFare, Model model, RedirectAttributes redirectAttributes) {
 
-		if (cabFare.getPickupLocation() == cabFare.getDropoffLocation()) {
+		if (cabFare.getPickupLocation().equals(cabFare.getDropoffLocation())) {
 			redirectAttributes.addFlashAttribute("info", "pickup and drop-off locations should not be same.");
 			return "redirect:/newcabfare";
 		} else if (cabFareRepository.existsByPickupLocationAndDropoffLocation(cabFare.getPickupLocation(),
@@ -68,7 +68,7 @@ public class CabFareController {
 		return "redirect:/viewallcabfares";
 	}
 
-	@PostMapping("/updatecabfare/updatecabfareinfo")
+	@PostMapping("/updatecabfareinfo")
 	public String updateCabFare(@ModelAttribute CabFare cabFare, Model model) {
 		String result = cabFareService.updateCabFare(cabFare);
 		if ("Success".equals(result)) {

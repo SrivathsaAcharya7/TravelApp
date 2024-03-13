@@ -59,7 +59,7 @@ public class CabController {
 		return "redirect:/caball";
 	}
 
-	@PostMapping("/updatecab/updatecabinfo")
+	@PostMapping("/updatecabinfo")
 	public String updateCab(@ModelAttribute Cab cab, Model model) {
 		String result = cabService.updateCab(cab);
 		if ("Success".equals(result)) {

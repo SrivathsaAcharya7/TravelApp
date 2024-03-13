@@ -1,7 +1,6 @@
 package com.travelapp.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,20 +8,19 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.travelapp.models.Booking;
 import com.travelapp.models.Cab;
 import com.travelapp.models.CabFare;
 import com.travelapp.models.Customer;
+import com.travelapp.repo.CabFareRepository;
 import com.travelapp.service.BookingService;
 import com.travelapp.service.CabFareService;
 import com.travelapp.service.CabService;
 import com.travelapp.service.CustomerService;
-
 import jakarta.servlet.http.HttpSession;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,6 +35,8 @@ public class BookingController {
 	private CabFareService cabFareService;
 	@Autowired
 	private CabService cabService;
+	@Autowired
+	private CabFareRepository cabFareRepository;
 
 	@GetMapping("/bookings")
 	public String getAllBookings(Model model) {
@@ -53,8 +53,6 @@ public class BookingController {
 		model.addAttribute("booking", new Booking());
 
 		if (customerId != null) {
-
-			model.addAttribute("customerId", customerId);
 
 			List<CabFare> cabFareList = cabFareService.getAllCabFares();
 
@@ -85,8 +83,15 @@ public class BookingController {
 	}
 
 	@PostMapping("/mybookings")
-	public String getMyBookings(@ModelAttribute Booking booking, @RequestParam("cab") int cabId,
-			@RequestParam("date") String date, @RequestParam("time") String time, HttpSession session) {
+	public String getMyBookings(@ModelAttribute Booking booking, @RequestParam("cabId") int cabId,
+			@RequestParam("date") String date, @RequestParam("time") String time, HttpSession session,
+			RedirectAttributes redirectAttributes) {
+		if (!cabFareRepository.existsByPickupLocationAndDropoffLocation(booking.getPickupLocation(),
+				booking.getDropoffLocation())) {
+			redirectAttributes.addFlashAttribute("error",
+					"No cab fare available for the selected pickup and drop-off locations.");
+			return "redirect:/bookcab";
+		}
 		Integer customerId = (Integer) session.getAttribute("customerId");
 		if (customerId != null) {
 			Customer customer = customerService.getCustomerById(customerId);
@@ -95,11 +100,11 @@ public class BookingController {
 				if (cab != null) {
 					cab.setAvailability("Unavailable");
 					cabService.updateCab(cab);
-					booking.setCustomer(customer);
 					booking.setCustomerName(customer.getName());
 					String dateTime = date + " " + time;
 					booking.setDate(dateTime);
 					booking.setCabType(cab.getType());
+					booking.setCustomerId(customerId);
 					String result = bookingService.addBooking(booking);
 					if ("Success".equals(result)) {
 						return "redirect:/bookinghistory";
@@ -145,7 +150,7 @@ public class BookingController {
 		return "redirect:/bookings";
 	}
 
-	@PostMapping("/updateBookingStatus/updateBookingStatusInfo")
+	@PostMapping("/updateBookingStatusInfo")
 	public String updateBookingStatusPost(@ModelAttribute Booking booking, Model model) {
 
 		Booking existingBooking = bookingService.getBookingById(booking.getId());
@@ -154,7 +159,7 @@ public class BookingController {
 			String result = bookingService.updateBookingStatus(booking.getId(), booking.getStatus());
 			if ("Success".equals(result)) {
 				if ("Completed".equals(booking.getStatus())) {
-					Cab cab = cabService.getCabById(existingBooking.getCab().getId()); // imp
+					Cab cab = cabService.getCabById(existingBooking.getCabId());
 					if (cab != null) {
 
 						cab.setAvailability("Available");

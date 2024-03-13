@@ -62,7 +62,7 @@ public class CustomerController {
 		return "redirect:/viewallcustomers";
 	}
 
-	@PostMapping("/updatecustomer/updatecustomerinfo")
+	@PostMapping("/updatecustomerinfo")
 	public String updateCustomer(@ModelAttribute Customer customer) {
 		customerService.updateCustomer(customer);
 		return "redirect:/viewallcustomers";

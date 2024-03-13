@@ -1,11 +1,9 @@
 package com.travelapp.models;
 
-import java.util.List;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Customer {
@@ -17,9 +15,6 @@ public class Customer {
 	private String email;
 	private String phone;
 	private String password;
-
-	@OneToMany(mappedBy = "customer")
-	private List<Booking> bookings;
 
 	public int getId() {
 		return id;
@@ -61,11 +56,4 @@ public class Customer {
 		this.password = password;
 	}
 
-	public List<Booking> getBookings() {
-		return bookings;
-	}
-
-	public void setBookings(List<Booking> bookings) {
-		this.bookings = bookings;
-	}
 }
