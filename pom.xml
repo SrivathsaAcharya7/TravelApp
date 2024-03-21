@@ -92,14 +92,6 @@
 					</image>
 				</configuration>
 			</plugin>
-			<plugin>
-    <groupId>org.apache.maven.plugins</groupId>
-    <artifactId>maven-compiler-plugin</artifactId>
-    <version>3.11.0</version> <!-- Update this to a version that supports Java 21 -->
-    <configuration>
-        <release>8</release> <!-- Specify the Java release version supported by your environment -->
-    </configuration>
-</plugin>
 		</plugins>
 		<finalName>TravelApp</finalName>
 	</build>
