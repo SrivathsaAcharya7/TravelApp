@@ -19,11 +19,11 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 
-	@GetMapping("/newcustomer")
-	public String newCustomer(Model model) {
-		model.addAttribute("customer", new Customer());
-		return "AddCustomer";
-	}
+//	@GetMapping("/newcustomer")
+//	public String newCustomer(Model model) {
+//		model.addAttribute("customer", new Customer());
+//		return "AddCustomer";
+//	}
 
 	@PostMapping("/newcustomerinfo")
 	public String addCustomer(@ModelAttribute Customer customer) {

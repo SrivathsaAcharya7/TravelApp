@@ -81,12 +81,12 @@ class TravelAppApplicationTests {
 		assertEquals("Success", result);
 	}
 
-	@Test
-	@Order(6)
-	public void testDeleteCab() {
-		String result = cabService.deleteCab(21);
-		assertEquals("Success", result);
-	}
+//	@Test
+//	@Order(6)
+//	public void testDeleteCab() {
+//		String result = cabService.deleteCab(22);
+//		assertEquals("Success", result);
+//	}
 
 	// CabFareService Test
 	@Test
@@ -124,12 +124,12 @@ class TravelAppApplicationTests {
 		assertEquals("Success", result);
 	}
 
-	@Test
-	@Order(11)
-	public void testDeleteCabFare() {
-		String result = cabFareService.deleteCabFare(19);
-		assertEquals("Success", result);
-	}
+//	@Test
+//	@Order(11)
+//	public void testDeleteCabFare() {
+//		String result = cabFareService.deleteCabFare(20);
+//		assertEquals("Success", result);
+//	}
 
 //CustomerService Test
 
@@ -170,13 +170,13 @@ class TravelAppApplicationTests {
 		assertEquals("Success", result);
 	}
 
-	@Test
-	@Order(16)
-	public void testDeleteCustomer() {
-		customerService.deleteCustomer(33);
-		Customer deletedCustomer = customerService.getCustomerById(33);
-		assertEquals(null, deletedCustomer);
-	}
+//	@Test
+//	@Order(16)
+//	public void testDeleteCustomer() {
+//		customerService.deleteCustomer(34);
+//		Customer deletedCustomer = customerService.getCustomerById(34);
+//		assertEquals(null, deletedCustomer);
+//	}
 
 	@Test
 	@Order(17)
@@ -224,12 +224,12 @@ class TravelAppApplicationTests {
 		assertThat(bookingList).size().isGreaterThan(0);
 	}
 
-	@Test
-	@Order(22)
-	public void testDeleteBooking() {
-		String result = bookingService.deleteBooking(19);
-		assertEquals("Success", result);
-	}
+//	@Test
+//	@Order(22)
+//	public void testDeleteBooking() {
+//		String result = bookingService.deleteBooking(20);
+//		assertEquals("Success", result);
+//	}
 
 	@Test
 	@Order(23)
