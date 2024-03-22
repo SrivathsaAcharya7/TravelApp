@@ -111,7 +111,6 @@ translateY(
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> Customers </a>
 					<div class="dropdown-menu" aria-labelledby="customerDropdown">
-					<!--  <a class="dropdown-item" href="newcustomer">Add Customer</a>-->	 
 						<a
 							class="dropdown-item" href="viewallcustomers">View Customers</a>
 					</div></li>

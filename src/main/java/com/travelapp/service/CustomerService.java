@@ -1,8 +1,7 @@
 package com.travelapp.service;
 
-//CustomerService.java
-
 import com.travelapp.models.Customer;
+
 
 import java.util.List;
 

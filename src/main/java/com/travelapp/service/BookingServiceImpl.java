@@ -2,6 +2,7 @@ package com.travelapp.service;
 
 import com.travelapp.models.Booking;
 
+
 import com.travelapp.repo.BookingRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
